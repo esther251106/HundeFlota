@@ -8,14 +8,14 @@ public class ConsolaUI {
         char[][] casillas = tablero.obtenerCasillas();
 
         System.out.print("  ");
-        for (int i = 0; i < tablero.obtenerTamaño(); i++) {
+        for (int i = 0; i < tablero.obtenerTamano(); i++) {
             System.out.print(i + " ");
         }
         System.out.println();
 
-        for (int fila = 0; fila < tablero.obtenerTamaño(); fila++) {
+        for (int fila = 0; fila < tablero.obtenerTamano(); fila++) {
             System.out.print(fila + " ");
-            for (int columna = 0; columna < tablero.obtenerTamaño(); columna++) {
+            for (int columna = 0; columna < tablero.obtenerTamano(); columna++) {
                 char celda = casillas[fila][columna];
                 if (celda == 'B') {
                     System.out.print("~ "); // No mostrar los barcos
