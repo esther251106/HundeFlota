@@ -1,52 +1,51 @@
 public class Tablero {
-
-    private char[][] tablero;
-    private int tamaño = 5;
-    private int numeroBarcos = 3;
+    private char[][] casillas;
+    private int tamano = 5;
+    private int barcos = 3;
 
     public Tablero() {
-        tablero = new char[tamaño][tamaño];
+        casillas = new char[tamano][tamano];
         inicializarTablero();
-        colocarBarcosAleatorios();
+        colocarBarcosAleatoriamente();
     }
 
     private void inicializarTablero() {
-        for (int fila = 0; fila < tamaño; fila++) {
-            for (int columna = 0; columna < tamaño; columna++) {
-                tablero[fila][columna] = '~'; // Agua
+        for (int fila = 0; fila < tamano; fila++) {
+            for (int columna = 0; columna < tamano; columna++) {
+                casillas[fila][columna] = '~'; // Agua
             }
         }
     }
 
-    private void colocarBarcosAleatorios() {
-        int barcosColocados = 0;
+    private void colocarBarcosAleatoriamente() {
+        int colocados = 0;
+        while (colocados < barcos) {
+            int fila = (int) (Math.random() * tamano);
+            int columna = (int) (Math.random() * tamano);
 
-        while (barcosColocados < numeroBarcos) {
-            int fila = (int) (Math.random() * tamaño);
-            int columna = (int) (Math.random() * tamaño);
-
-            if (tablero[fila][columna] == '~') {
-                tablero[fila][columna] = 'B'; // Barco
-                barcosColocados++;
+            if (casillas[fila][columna] == '~') {
+                casillas[fila][columna] = 'B'; // Barco
+                colocados++;
             }
         }
     }
 
     public boolean disparar(int fila, int columna) {
-        if (tablero[fila][columna] == 'B') {
-            tablero[fila][columna] = 'X'; // Tocado
+        if (casillas[fila][columna] == 'B') {
+            casillas[fila][columna] = 'X'; // Tocado
             return true;
-        } else if (tablero[fila][columna] == '~') {
-            tablero[fila][columna] = 'O'; // Agua
+        } else if (casillas[fila][columna] == '~') {
+            casillas[fila][columna] = 'O'; // Agua (disparo fallido)
             return false;
+        } else {
+            return false; // Ya se disparo aqui (X u O)
         }
-        return false; // Ya disparado
     }
 
-    public boolean todosLosBarcosHundidos() {
-        for (int fila = 0; fila < tamaño; fila++) {
-            for (int columna = 0; columna < tamaño; columna++) {
-                if (tablero[fila][columna] == 'B') {
+    public boolean todosHundidos() {
+        for (int fila = 0; fila < tamano; fila++) {
+            for (int columna = 0; columna < tamano; columna++) {
+                if (casillas[fila][columna] == 'B') {
                     return false;
                 }
             }
@@ -54,11 +53,12 @@ public class Tablero {
         return true;
     }
 
-    public char[][] obtenerTablero() {
-        return tablero;
+    // Métodos accesores
+    public char[][] obtenerCasillas() {
+        return casillas;
     }
 
-    public int obtenerTamaño() {
-        return tamaño;
+    public int obtenerTamano() {
+        return tamano;
     }
 }

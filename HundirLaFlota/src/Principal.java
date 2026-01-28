@@ -8,8 +8,8 @@ public class Principal {
         while (!juego.juegoTerminado()) {
             consola.mostrarTablero(juego.obtenerTablero());
 
-            int fila = consola.pedirCoordenada("Introduce la fila: ", juego.obtenerTablero().obtenerTamaño());
-            int columna = consola.pedirCoordenada("Introduce la columna: ", juego.obtenerTablero().obtenerTamaño());
+            int fila = consola.pedirCoordenada("Introduce la fila: ", juego.obtenerTablero().obtenerTamano());
+            int columna = consola.pedirCoordenada("Introduce la columna: ", juego.obtenerTablero().obtenerTamano());
 
             boolean acierto = juego.realizarDisparo(fila, columna);
 
@@ -19,10 +19,10 @@ public class Principal {
                 consola.mostrarMensaje("🌊 Agua...");
             }
 
-            consola.mostrarMensaje("Intentos restantes: " + juego.obtenerIntentosRestantes());
+            consola.mostrarMensaje("Intentos restantes: " + juego.intentosRestantes());
         }
 
-        if (juego.esVictoria()) {
+        if (juego.victoria()) {
             consola.mostrarMensaje("🏆 ¡Has hundido todos los barcos!");
         } else {
             consola.mostrarMensaje("💀 Fin del juego. Te has quedado sin intentos.");

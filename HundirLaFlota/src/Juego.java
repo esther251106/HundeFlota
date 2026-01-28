@@ -15,11 +15,11 @@ public class Juego {
     }
 
     public boolean juegoTerminado() {
-        return tablero.todosLosBarcosHundidos() || intentos >= maxIntentos;
+        return tablero.todosHundidos() || intentos >= maxIntentos;
     }
 
     public boolean victoria() {
-        return tablero.todosLosBarcosHundidos();
+        return tablero.todosHundidos();
     }
 
     public Tablero obtenerTablero() {
